@@ -1,0 +1,164 @@
+body {
+    margin: 0;
+}
+
+/* Globals */
+.content {
+    width: 100%;
+}
+
+.content-padding {
+    padding-left: 4%;
+    padding-right: 4%;
+}
+
+.content-width {
+    width: 92%;
+}
+
+.border-right {
+    border-right: 1.5px solid black;
+}
+
+.border-left {
+    border-left: 1.5px solid black;
+}
+
+.border-bottom {
+    border-bottom: 1.5px solid black;
+}
+
+.padding-top2 {
+    padding-top: 2%;
+}
+
+.flex-bottom {
+    justify-content: flex-end!important;
+}
+
+.flex-top {
+    justify-content: flex-start!important;
+}
+
+.width50 {
+    width: 50%;
+}
+
+.width100 {
+    width: 100%;
+}
+
+.column {
+    flex-direction: column;
+}
+
+.font-size20 {
+    font-size: 20px;
+}
+
+.font-size18 {
+    font-size: 18px;
+}
+
+.paddingTop0 {
+    padding-top: 0!important;
+}
+
+/* ATF */
+.atf-frame {
+    height: 28vh;
+    background-color: rgb(12,107,161);
+    display: flex;
+    align-items: center;
+    color: white;
+    padding-top: 4%;
+    padding-bottom: 2%;
+}
+
+.atf-frame p{
+    margin-bottom: 12px;
+}
+
+.data-frame {
+    width: 25%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.data-frame2 {
+    width: 50%;
+    padding-left: 4%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.data-frame3 {
+    width: 75%;
+    padding-left: 4%;
+    height: 100%;
+    display: flex;
+}
+
+.data-frame3 h2 {
+    margin: 0;
+    padding-top: 2%;
+}
+
+.data-frame3 ul {
+    padding-left: 18px;
+}
+
+.data-frame3 h3 {
+    margin: 0;
+    font-weight: 400;
+}
+
+.profile-foto-frame {
+    width: 25%;
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-start;
+    height: 100%;
+}
+
+.profile-foto-frame img {
+    width: auto;
+    height: 240px;
+    /* object-fit: contain; */
+}
+
+/* kompetenzen */
+.kompetenzen-frame {
+    height: 8vh;
+    display: flex;
+    align-items: center;
+    font-size: 20px;
+    padding-top: 4%;
+}
+
+.kompetenzen-frame div {
+    justify-content: center;
+}
+
+.kompetenzen-erfahrung-frame {
+    display: flex;
+    align-items: center;
+    height: 18vh;
+}
+
+.erfahrung-frame {
+    display: flex;
+    align-items: center;
+}
+
+@media print {
+    .mediaAlways {
+        page-break-after: always;
+    }
+
+    .printMarginTop {
+        margin-top: 240px!important;
+    }
+}
