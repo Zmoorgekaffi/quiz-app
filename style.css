@@ -1,0 +1,15 @@
+/* Globals */
+.content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    width: 100%;
+    background-color: aqua;
+}
+
+.me-img-height {
+    width: 100%;
+    height: 50vh;
+    object-fit: cover;
+}
