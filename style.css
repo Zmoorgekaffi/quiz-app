@@ -22,15 +22,41 @@
     padding-left: 16px;
 }
 
+.me-margin-bottom-2 {
+    margin-bottom: 2%;
+}
 
 /* karte */
 .card {
     --bs-card-height: 90vh;
+    width: 90%;
+    flex-direction: unset;
 }
 
 .me-card-next-frame {
     display: flex;
     align-items: flex-end;
     justify-content: space-between;
-    width: 100%;
+    flex: 1;
+}
+
+.me-bg-blue {
+    background-color: rgb(24,60,232);
+}
+
+.me-nav-width {
+    width: 15%;
+}
+
+.card-text {
+    font-size: 24px!important;
+}
+
+.me-nav-font {
+    font-size: 28px!important;
+}
+
+.me-nav-font:hover {
+    color: rgba(255, 255, 255, 0.6)!important;
+    filter: drop-shadow(0 0 8px rgba(255,255,255,1))!important;
 }
