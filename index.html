@@ -29,10 +29,9 @@
                 <img class="pt-5" style="margin-bottom: 64%;" src="./img/logo 2.png" alt="">
                 <div class="collapse navbar-collapse justify-content-center" id="navbarNavAltMarkup">
                     <div class="navbar-nav flex-column">
-                        <a class="nav-item nav-link me-nav-font text-light" href="#" onclick="loadPersDataInput()">Pers.
-                            Daten</a>
-                        <a class="nav-item nav-link me-nav-font text-light" href="#">Kompetenzen</a>
-                        <a class="nav-item nav-link me-nav-font text-light" href="#">Erfahrung</a>
+                        <a class="nav-item nav-link me-nav-font text-light" href="#" onclick="reInitCounter(0)">Pers. Daten</a>
+                        <a class="nav-item nav-link me-nav-font text-light" href="#" onclick="reInitCounter(1)">Kompetenzen</a>
+                        <a class="nav-item nav-link me-nav-font text-light" href="#" onclick="reInitCounter(2)">Erfahrung</a>
                         <a class="nav-item nav-link me-nav-font text-light" href="#">Ausbildung</a>
                         <a class="nav-item nav-link me-nav-font text-light" href="#">Sprachen</a>
                     </div>
@@ -45,13 +44,13 @@
                     </span>
                     <p id="question" class="card-text me-flex-center" style="text-align: center;"></p>
                 </div>
-                <div class=" w-100 d-flex justify-content-center align-items-center" style="gap: 8px;" id="question-content">
+                <div class=" w-100 d-flex justify-content-center align-items-center flex-column" id="question-content">
 
                 </div>
                 <div class="card-body d-flex" style="padding: 4%;">
                     <div class="me-card-next-frame">
                         <span id="question-counter" style="text-align: center;"></span>
-                        <button id="next-btn" class="btn btn-primary" onclick="nextStep()">Nächste Frage</button>
+                        <button type="submit" form="my-form" id="next-btn" class="btn btn-primary">Nächste Frage</button>
                     </div>
                 </div>
             </div>

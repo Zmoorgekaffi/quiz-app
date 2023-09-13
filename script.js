@@ -1,5 +1,6 @@
 let currentSection = 0;
 let currentQuestion = 0;
+let tasks = [];
 
 let data = [
     {
@@ -7,15 +8,49 @@ let data = [
         questions: [
             {
                 question: 'Wie lautet dein Vor- und Nachname?',
-                content: '<div class="input-group w-50">\
-                                <input id="input-data" type="text" class="form-control text-center" name="name" placeholder="Vorname Nachname">\
-                            </div>'
+                content: '<form class="me-form" id="my-form" onsubmit="nextStep(); return false;"><div class="input-group w-50">\
+                                <input id="input-data" type="text" class="form-control text-center" name="name" placeholder="Vorname Nachname" required>\
+                            </div></form>'
             },
             {
                 question: 'Wie lautet deine E-Mail-Adresse?',
-                content: '<div class="input-group w-50">\
-                                <input id="input-data" type="email" class="form-control text-center" name="mail" placeholder="E-Mail-Adresse">\
-                            </div>'
+                content: '  <form class="me-form" id="my-form" onsubmit="nextStep(); return false;">\
+                                <div class="input-group w-50">\
+                                    <input id="input-data" type="email" class="form-control text-center" name="mail" placeholder="E-Mail-Adresse" required>\
+                                </div>\
+                            </form>'
+            },
+            {
+                question: 'Wann wurdest du Geboren?',
+                content: '  <form class="me-form" id="my-form" onsubmit="nextStep(); return false;">\
+                                <div class="input-group w-50">\
+                                    <input id="input-data" type="text" pattern="[0-9\.]{10}" class="form-control text-center" name="birth" placeholder="Tag.Monat.Jahr" required>\
+                                </div>\
+                            </form>'
+            },
+            {
+                question: 'Wie lautet dein Geburtsort?',
+                content: '  <form class="me-form" id="my-form" onsubmit="nextStep(); return false;">\
+                                <div class="input-group w-50">\
+                                    <input id="input-data" type="text" minlength="2" class="form-control text-center" name="birthPlace" placeholder="Gebe hier deinen Geburtsort ein" required>\
+                                </div>\
+                            </form>'
+            },
+            {
+                question: 'Wie sieht es mit deinem Familienstand aus?',
+                content: '  <form class="me-form" id="my-form" onsubmit="nextStep(); return false;">\
+                                <div class="input-group w-50">\
+                                    <input id="input-data" type="text" class="form-control text-center" name="marital" placeholder="Familienstand: zb. Ledig, Verheiratet, etc." required>\
+                                </div>\
+                            </form>'
+            },
+            {
+                question: 'Wie lautet deine Addresse?',
+                content: '  <form class="me-form" id="my-form" onsubmit="nextStep(); return false;">\
+                                <div class="input-group w-50">\
+                                    <input id="input-data" type="text" class="form-control text-center" name="address" placeholder="Addresse: zb. Musterstrasse 42, 0000 Beispielsplatz" required>\
+                                </div>\
+                            </form>'
             },
         ]
     },
@@ -23,10 +58,58 @@ let data = [
         title: 'Kompetenzen',
         questions: [
             {
-                question: 'Was kannst du überhaupt?',
-                content: '<div class="input-group w-50">\
-                                <input id="input-data" type="text" class="form-control text-center" name="competence" placeholder="Deine Lieblingseigenschaft">\
-                            </div>'
+                question: 'Gebe hier deine Kompetenzen an. Gebe mindestens 4 an, dass Maximum ist 8.',
+                content: '  <form class="me-form" id="my-form" onsubmit="nextStepSaveCompetence(); return false;">\
+                                <div class="input-group w-50">\
+                                    <input id="input-data1" type="text" class="form-control text-center" name="competence1" placeholder="Deine Lieblingseigenschaft" required>\
+                                </div>\
+                                <div class="input-group w-50">\
+                                    <input id="input-data2" type="text" class="form-control text-center" name="competence2" placeholder="Deine Lieblingseigenschaft" required>\
+                                </div>\
+                                <div class="input-group w-50">\
+                                    <input id="input-data3" type="text" class="form-control text-center" name="competence3" placeholder="Deine Lieblingseigenschaft" required>\
+                                </div>\
+                                <div class="input-group w-50">\
+                                    <input id="input-data4" type="text" class="form-control text-center" name="competence4" placeholder="Deine Lieblingseigenschaft" required>\
+                                </div>\
+                                <div class="input-group w-50">\
+                                    <input id="input-data5" type="text" class="form-control text-center" name="competence5" placeholder="Deine Lieblingseigenschaft">\
+                                </div>\
+                                <div class="input-group w-50">\
+                                    <input id="input-data6" type="text" class="form-control text-center" name="competence6" placeholder="Deine Lieblingseigenschaft">\
+                                </div>\
+                                <div class="input-group w-50">\
+                                    <input id="input-data7" type="text" class="form-control text-center" name="competence7" placeholder="Deine Lieblingseigenschaft">\
+                                </div>\
+                                <div class="input-group w-50">\
+                                    <input id="input-data8" type="text" class="form-control text-center" name="competence8" placeholder="Deine Lieblingseigenschaft">\
+                                </div>\
+                            </form>'
+            },
+        ]
+    },
+    {
+        title: 'Erfahrungen',
+        questions: [
+            {
+                question: 'Gebe hier deine Erfahrungen an, du kannst mit dem Hinzufügen Button, so viele Erfahrungen hinzufügen wie du willst',
+                content: '  <form class="me-form" id="my-form1" onsubmit="nextStepSaveExp(); return false;">\
+                                <div class="input-group w-50">\
+                                    <input id="input-data1" type="text" class="form-control text-center" name="Berufsbezeichnung" placeholder="Berufsbezeichnung" required>\
+                                </div>\
+                                <div class="input-group w-50">\
+                                    <input id="input-data2" type="text" class="form-control text-center" name="Arbeitgeber" placeholder="Arbeitgeber" required>\
+                                </div>\
+                                <div class="input-group w-50">\
+                                    <input id="input-data3" type="text" class="form-control text-center" name="Anstellungszeit" placeholder="Anstellungszeit: zb. 08/1998 - 01/2000" required>\
+                                </div>\
+                            </form>\
+                            <div style="margin: 0 auto;" class="d-flex justify-content-center align-items-center flex-column">\
+                                <input style= "width: 400px;" id="input-data4" type="text" class="form-control text-center" name="Aufgaben" placeholder="Füge bis zu 6 Aufgaben deiner Erfahrung hinzu">\
+                                <button style=" margin:24px 0!important;" onclick="addTaskToArray()" class="btn btn-secondary">Aufgabe hinzufügen</button>\
+                            <div style="min-height: 40px;" class="form-control" id="display-tasks"></div>\
+                            </div>\
+                            '
             },
         ]
     },
@@ -40,12 +123,15 @@ function loadData() {
 }
 
 function nextStep() {
-
-    if (currentQuestion + 1 === data[currentSection].questions.length) {
-        currentSection++;
-        currentQuestion = 0;
+    if (currentSection + 1 === data.length) {
+        currentSection = 0
     } else {
-        currentQuestion++;
+        if (currentQuestion + 1 === data[currentSection].questions.length) {
+            currentSection++;
+            currentQuestion = 0;
+        } else {
+            currentQuestion++;
+        }
     }
 
     save();
@@ -54,7 +140,7 @@ function nextStep() {
 }
 
 function save() {
-    var currentData = JSON.parse(localStorage.getItem('data'));
+    let currentData = JSON.parse(localStorage.getItem('data'));
     currentData[document.getElementById('input-data').getAttribute('name')] = document.getElementById('input-data').value;
     localStorage.setItem('data', JSON.stringify(currentData));
 }
@@ -63,51 +149,83 @@ function init() {
     loadData()
     localStorage.setItem('data', JSON.stringify({}))
 }
-
-
 /*** Bis hier Klemi Bang */
 
+/* Andre */
+function reInitCounter(z1) {
+    currentSection = z1;
+    currentQuestion = 0;
+    if (currentSection === 2) {
+        document.getElementById('next-btn').innerText = `Erfahrung hinzufügen`;
+        tasks.splice(0, tasks.length);
+    } else {
+        document.getElementById('next-btn').innerText = `Nächste Frage`;
+    }
+    loadData();
+}
 
-let cVProcess = [
+function nextStepSaveCompetence() {
+    if (currentSection + 1 === data.length) {
+        currentSection = 0
+    } else {
+        if (currentQuestion + 1 === data[currentSection].questions.length) {
+            currentSection++;
+            currentQuestion = 0;
+            if (currentSection === 2){
+                document.getElementById('next-btn').innerText = `Erfahrung hinzufügen`;
+                tasks.splice(0, tasks.length);
+            } else {
+                document.getElementById('next-btn').innerText = `Nächste Frage`;
+            }
+        } else {
+            currentQuestion++;
+        }
+    }
+    let currentData = JSON.parse(localStorage.getItem('data'));
+    currentData[document.getElementById('input-data1').getAttribute('name')] = document.getElementById('input-data1').value;
+    currentData[document.getElementById('input-data2').getAttribute('name')] = document.getElementById('input-data2').value;
+    currentData[document.getElementById('input-data3').getAttribute('name')] = document.getElementById('input-data3').value;
+    currentData[document.getElementById('input-data4').getAttribute('name')] = document.getElementById('input-data4').value;
+    currentData[document.getElementById('input-data5').getAttribute('name')] = document.getElementById('input-data5').value;
+    currentData[document.getElementById('input-data6').getAttribute('name')] = document.getElementById('input-data6').value;
+    currentData[document.getElementById('input-data7').getAttribute('name')] = document.getElementById('input-data7').value;
+    currentData[document.getElementById('input-data8').getAttribute('name')] = document.getElementById('input-data8').value;
+    localStorage.setItem('data', JSON.stringify(currentData));
+    loadData();
+}
+
+/* Baustelle (input feld lässt sich nicht leeren)*/
+function addTaskToArray() {
+    let taskinput = document.getElementById('input-data4').value;
+    if (taskinput === ``) {
+        alert('Du kannst keine Leere Aufgabe hinzufügen');
+    } else {
+        tasks.push(taskinput);
+        loadTempTasks();
+        taskinput.innerText = "";
+    }
+}
+/* bis hier */
+
+function loadTempTasks() {
+    let taskDisplay = document.getElementById('display-tasks');
+    taskDisplay.innerHTML = ``;
+    for(i = 0; i < tasks.length; i++) {
+        taskDisplay.innerHTML += `${tasks[i]}, `;
+    }
+}
+
+/* Testarray */
+let exp = [
     {
-        'title': 'Persönliche Daten',
-        'question1': 'Wie lautet dein Vor und Nachname?',
-        'question2': 'Wie lautet deine E-mail?',
-        'question3': 'Wann wurdest du geboren?',
-        'question4': 'Welches ist dein Geburtsort?',
-        'question5': 'Wie ist dein Familienstand?',
-        'question6': 'Wie lautet deine Addresse?',
-        'question7': 'Besitzt du einen Führerschein?'
-    },
-    {
-        'title': 'Kompetenzen',
-        'question1': 'Gebe hier, bis zu 8 verschiedene Kompetenzen ein. Füge sie mit dem Button "hinzufügen" hinzu. Bedenke, nur die ersten 8 werden auch später angezeigt',
-    },
-    {
-        'title': 'Erfahrung',
-        'question1': 'Gebe hier deine Erfahrungen ein. Du kannst so viele Aufgaben zu einer Erfahrung hinzufügen wie du möchtest. Du kannst eben so viele Erfahrungen hinzufügen.'
-    },
-    {
-        'title': 'Ausbildung',
-        'question1': 'Ähnlich wie bei den Erfahrungen, kannst du hier die Daten deine Ausbildung angeben. Hast du Mehrere Ausbildungs stellen gehabt? Dann kannst du auch hier mehrere Ausbildungsplätze hinzufügen.'
-    },
-    {
-        'title': 'Sprachen',
-        'question1': 'Welche Sprachen sprichst du? du kannst in den Sprachen Input die Sprache nennen und im zweiten input, den Beherrschungsgrad auswählen.'
+        berufsbezeichnung: "",
+        arbeitgeber: "",
+        anstellungszeit: "",
+        aufgaben: []
     }
 ]
 
-function loadPersDataInput() {
-    let display = document.getElementById('card-content-frame');
-    display.innerHTML = ``;
-    display.innerHTML += `${generateCard(cVProcess[0].title, cVProcess[0].question1)}`
-    document.getElementById('if').innerHTML += `${generateInputAndButton()}`;
-    document.getElementById('next-btn').setAttribute('onclick', 'loadPersDataInput2()');
-}
-
-function loadPersDataInput2() {
-
-}
+/* alt */
 
 function generateInputAndButton() {
     let html = /*html*/`

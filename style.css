@@ -73,3 +73,22 @@
     color: rgba(255, 255, 255, 0.6)!important;
     filter: drop-shadow(0 0 8px rgba(255,255,255,1))!important;
 }
+
+.me-form {
+    width: 800px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.me-form input{
+    margin-bottom: 8px!important;
+}
+
+.display-tasks {
+    height: 40px;
+    width: 100%;
+    border: 1px solid black;
+    border-radius: 12px;
+}
