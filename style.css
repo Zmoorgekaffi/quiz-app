@@ -87,8 +87,16 @@
 }
 
 .display-tasks {
-    height: 40px;
-    width: 100%;
-    border: 1px solid black;
-    border-radius: 12px;
+    flex-wrap: wrap;
+    word-wrap: break-word;
+    max-width: 400px;
+    min-height: 40px;
+}
+
+.delete-task {
+    width: 16px;
+}
+
+.delete-task:hover {
+    cursor: pointer;
 }
