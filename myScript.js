@@ -2,6 +2,7 @@ let myCurrentSection = 0;
 let currentQuestion = 0;
 let expCounter = 1;
 let apprenticeCounter = 1;
+let languageCounter = 1;
 let tasks = [];
 
 let data = [
@@ -144,6 +145,23 @@ let data = [
             },
         ]
     },
+    {
+        title: 'Sprachen',
+        questions: [
+            {
+                question: 'Gebe hier deine Sprachen an, du kannst mit dem "hinzufügen" Button, so viele Sprachen hinzufügen wie du willst',
+                content: '  <form class="me-form" id="my-form" onsubmit="saveLanguage(); return false;">\
+                                <div class="input-group w-50">\
+                                    <input id="input-data1" type="text" class="form-control text-center" name="sprache" placeholder="Name der Sprache zb. Deutsch" required>\
+                                </div>\
+                                <div class="input-group w-50">\
+                                    <input id="input-data2" type="text" class="form-control text-center" name="beherrschungsgrad" placeholder="Beherrschungsgrad zb. B1 / Mittlere Kenntnisse" required>\
+                                </div>\
+                             </form>\
+                             '
+            },
+        ]
+    }
 ]
 
 function saveExp() {
@@ -201,6 +219,7 @@ function init() {
     localStorage.setItem('data', JSON.stringify({}));
     localStorage.setItem('exps', JSON.stringify([]));
     localStorage.setItem('apprentice', JSON.stringify([]));
+    localStorage.setItem('language', JSON.stringify([]));
 }
 
 function reInitCounter(z1) {
@@ -253,7 +272,6 @@ function nextStepSaveCompetence() {
 function apprenticeBtn() {
     document.getElementById('next-btn').innerHTML = `Ausbildung hinzufügen`;
 }
-//baustelle
 
 function saveApprentice() {
     let currentData = JSON.parse(localStorage.getItem('apprentice'));
@@ -277,7 +295,31 @@ function saveApprentice() {
     apprenticeCounter++;
     loadData();
 }
-//bis hier
+
+function languageBtn() {
+    document.getElementById('next-btn').innerHTML = `Sprache hinzufügen`;
+}
+
+function saveLanguage() {
+    let currentData = JSON.parse(localStorage.getItem('language'));
+    let language = [
+        {
+            title: `language${languageCounter}`,
+            data: [
+                {
+                    sprache: `${document.getElementById('input-data1').value}`,
+                    grad: `${document.getElementById('input-data2').value}`,
+                }
+            ]
+        }
+    ]
+    currentData.push(language);
+    localStorage.setItem('language', JSON.stringify(currentData));
+    tasks.splice(0, tasks.length);
+    languageCounter++;
+    loadData();
+}
+
 function addTaskToArray() {
     let taskinput = document.getElementById('input-data5');
     if (taskinput.value === ``) {
