@@ -1,6 +1,7 @@
 let myCurrentSection = 0;
 let currentQuestion = 0;
 let expCounter = 1;
+let apprenticeCounter = 1;
 let tasks = [];
 
 let data = [
@@ -93,7 +94,7 @@ let data = [
         title: 'Erfahrungen',
         questions: [
             {
-                question: 'Gebe hier deine Erfahrungen an, du kannst mit dem Hinzufügen Button, so viele Erfahrungen hinzufügen wie du willst',
+                question: 'Gebe hier deine Erfahrungen an, du kannst mit dem "hinzufügen" Button, so viele Erfahrungen hinzufügen wie du willst',
                 content: '  <form class="me-form" id="my-form" onsubmit="saveExp(); return false;">\
                                 <div class="input-group w-50">\
                                     <input id="input-data1" type="text" class="form-control text-center" name="berufsbezeichnung" placeholder="Berufsbezeichnung" required>\
@@ -118,26 +119,27 @@ let data = [
         ]
     },
     {
-        title: 'Erfahrungen',
+        title: 'Ausbildung',
         questions: [
             {
-                question: 'Gebe hier deine Ausbildungen an, du kannst mit dem Hinzufügen Button, so viele Ausbildungen hinzufügen wie du willst',
+                question: 'Gebe hier deine Ausbildung/en an, du kannst mit dem "hinzufügen" Button, so viele Ausbildungen bzw. Lehren hinzufügen wie du willst',
                 content: '  <form class="me-form" id="my-form" onsubmit="saveApprentice(); return false;">\
-                                 <div class="input-group w-50">\
-                                     <input id="input-data1" type="text" class="form-control text-center" name="lehrstellenbezeichnung" placeholder="Lehrstellen-Bezeichnung" required>\
-                                 </div>\
-                                 <div class="input-group w-50">\
-                                     <input id="input-data2" type="text" class="form-control text-center" name="arbeitgeber" placeholder="Arbeitgeber" required>\
-                                 </div>\
-                                 <div class="input-group w-50">\
-                                     <input id="input-data3" type="text" class="form-control text-center" name="anstellungszeit" placeholder="Anstellungszeit: zb. 08/1998 - 01/2000" required>\
-                                 </div>\
+                                <div class="input-group w-50">\
+                                    <input id="input-data1" type="text" class="form-control text-center" name="berufsbezeichnung" placeholder="Berufsbezeichnung" required>\
+                                </div>\
+                                <div class="input-group w-50">\
+                                    <input id="input-data2" type="text" class="form-control text-center" name="arbeitgeber" placeholder="Arbeitgeber" required>\
+                                </div>\
+                                <div class="input-group w-50">\
+                                <input id="input-data3" type="text" class="form-control text-center" name="ortschaft" placeholder="Gebe hier die Ortschaft des Betriebs ein" required>\
+                                </div>\
+                                <div class="input-group w-50">\
+                                    <input id="input-data4" type="text" class="form-control text-center" name="anstellungszeit" placeholder="Anstellungszeit: zb. 08/1998 - 01/2000" required>\
+                                </div>\
+                                <div class="input-group w-50">\
+                                    <input id="input-data5" type="text" class="form-control text-center" name="note" placeholder="Notendurchschnitt" required>\
+                                </div>\
                              </form>\
-                             <div style="margin: 0 auto;" class="d-flex justify-content-center align-items-center flex-column">\
-                                 <input style= "width: 400px;" id="input-data4" type="text" class="form-control text-center" name="Aufgaben" placeholder="Füge bis zu 6 Aufgaben deiner Erfahrung hinzu">\
-                                 <button style=" margin:24px 0!important;" onclick="addTaskToArray()" class="btn btn-secondary">Aufgabe hinzufügen</button>\
-                             <div class="display-tasks form-control" id="display-tasks"></div>\
-                             </div>\
                              '
             },
         ]
@@ -198,6 +200,7 @@ function init() {
     loadData()
     localStorage.setItem('data', JSON.stringify({}));
     localStorage.setItem('exps', JSON.stringify([]));
+    localStorage.setItem('apprentice', JSON.stringify([]));
 }
 
 function reInitCounter(z1) {
@@ -247,6 +250,34 @@ function nextStepSaveCompetence() {
     SaveCompetence();
 }
 
+function apprenticeBtn() {
+    document.getElementById('next-btn').innerHTML = `Ausbildung hinzufügen`;
+}
+//baustelle
+
+function saveApprentice() {
+    let currentData = JSON.parse(localStorage.getItem('apprentice'));
+    let apprentice = [
+        {
+            title: `apprentice${apprenticeCounter}`,
+            data: [
+                {
+                    berufsbezeichnung: `${document.getElementById('input-data1').value}`,
+                    arbeitgeber: `${document.getElementById('input-data2').value}`,
+                    ortschaft: `${document.getElementById('input-data3').value}`,
+                    anstellungszeit: `${document.getElementById('input-data4').value}`,
+                    note: `${document.getElementById('input-data5').value}`
+                }
+            ]
+        }
+    ]
+    currentData.push(apprentice);
+    localStorage.setItem('apprentice', JSON.stringify(currentData));
+    tasks.splice(0, tasks.length);
+    apprenticeCounter++;
+    loadData();
+}
+//bis hier
 function addTaskToArray() {
     let taskinput = document.getElementById('input-data5');
     if (taskinput.value === ``) {
@@ -271,6 +302,4 @@ function deleteTask(p) {
     tasks.splice(p, 1);
     loadTempTasks();
 }
-
-
 
