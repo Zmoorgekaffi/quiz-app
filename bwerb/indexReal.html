@@ -9,11 +9,12 @@
     <script src="./scriptReal.js"></script>
 </head>
 
-<body onload="loadExp(), loadApprentice()">
+<body onload="loadExps(), loadApprentice(), loadUserData(), loadCompetence()">
     <div class="content">
         <!--  Atf -->
         <div class="atf-frame content-padding content-width">
             <div class="data-frame">
+                <p class="font-size18">Name</p>
                 <p class="font-size18">Mobil-Nr.</p>
                 <p class="font-size18">E-mail</p>
                 <p class="font-size18">geb.</p>
@@ -21,6 +22,7 @@
                 <p class="font-size18">Adresse</p>
             </div>
             <div class="data-frame2">
+                <p id="name" class="font-size18">Max Mustermann</p>
                 <p id="mobile" class="font-size18">000000000</p>
                 <p id="email" class="font-size18">andre.karyoti@outlook.de</p>
                 <p id="birth" class="font-size18">22.08.1996 Würzburg</p>

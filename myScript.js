@@ -16,6 +16,12 @@ let data = [
                              </div></form>'
             },
             {
+                question: 'Wie lautet deine Telefonnummer?',
+                content: '<form class="me-form" id="my-form" onsubmit="nextStep(); return false;"><div class="input-group w-50">\
+                                 <input id="input-data" type="text" pattern="[0-9 +]*" class="form-control text-center" name="tNumber" placeholder="Telefonnummer zb. 078 685 22 22" required>\
+                             </div></form>'
+            },
+            {
                 question: 'Wie lautet deine E-Mail-Adresse?',
                 content: '  <form class="me-form" id="my-form" onsubmit="nextStep(); return false;">\
                                  <div class="input-group w-50">\
