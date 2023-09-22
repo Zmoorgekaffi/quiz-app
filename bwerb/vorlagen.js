@@ -148,3 +148,25 @@ function loadExp() {
     }
     forPrint();
 }
+
+    let competences = [];
+function SaveCompetence() {
+    competences.push(document.getElementById('input-data1').value);
+    competences.push(document.getElementById('input-data2').value);
+    competences.push(document.getElementById('input-data3').value);
+    competences.push(document.getElementById('input-data4').value);
+    competences.push(document.getElementById('input-data5').value);
+    competences.push(document.getElementById('input-data6').value);
+    competences.push(document.getElementById('input-data7').value);
+    competences.push(document.getElementById('input-data8').value);
+    addCompetencesToData();
+}
+
+function addCompetencesToData() {
+    let currentData = JSON.parse(localStorage.getItem('data'));
+    currentData.myCompetences = [{}];
+    for (i = 0; i < competences; i++) {
+    currentData.myCompetences[0].push(competences[i]);
+    }
+    localStorage.setItem('data', JSON.stringify(currentData));
+}

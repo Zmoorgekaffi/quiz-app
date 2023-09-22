@@ -9,7 +9,7 @@
     <script src="./scriptReal.js"></script>
 </head>
 
-<body onload="loadExps(), loadApprentice(), loadUserData(), loadCompetence()">
+<body onload="loadLanguages(), loadUserData(), loadExps(), loadApprentice(), loadCompetence()">
     <div class="content">
         <!--  Atf -->
         <div class="atf-frame content-padding content-width">
@@ -45,19 +45,11 @@
             </div>
             <div class="data-frame3 border-left border-bottom">
                 <div class="width50">
-                    <ul>
-                        <li id="competence1" class="font-size18">Mise en Place</li>
-                        <li id="competence2" class="font-size18">Zubereitung von Speisen</li>
-                        <li id="competence3" class="font-size18">Lebensmittelsicherheit</li>
-                        <li id="competence4" class="font-size18">Ausgezeichnete Kommunikationsfähigkeit</li>
+                    <ul id="compList1">
                     </ul>
                 </div>
                 <div class="width50">
-                    <ul>
-                        <li id="competence5" class="font-size18">Qualitätskontrolle</li>
-                        <li id="competence6" class="font-size18">Teamarbeit</li>
-                        <li id="competence7" class="font-size18">Sichere Handhabung von Lebensmitteln</li>
-                        <li id="competence8" class="font-size18">Gute Herstellungspraxis</li>
+                    <ul id="compList2">
                     </ul>
                 </div>
             </div>
@@ -86,11 +78,7 @@
         <div class="erfahrung-frame content-padding content-width">
             <div class="data-frame flex-top padding-top2">
             </div>
-            <div class="data-frame3 column border-left">
-                <p class="font-size20"><b>Deutsch:</b> Muttersprache</p>
-                <p class="font-size20"><b>Englisch:</b> B1 / Mittlere Kenntnisse</p>
-                <p class="font-size20"><b>Griechisch:</b> A2 / Grundlagen</p>
-                <p class="font-size20"><b>Französisch:</b> A1 / Einsteiger</p>
+            <div id="lang-display" class="data-frame3 column border-left">
             </div>
         </div>
     </div>

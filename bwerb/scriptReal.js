@@ -1,6 +1,7 @@
 let apprenticeArray = JSON.parse(localStorage.getItem('apprentice'));
 let expArray = JSON.parse(localStorage.getItem('exps'));
 let userData = JSON.parse(localStorage.getItem('data'));
+let language = JSON.parse(localStorage.getItem('language'));
 
 function loadUserData() {
     document.getElementById('name').innerHTML = userData.name;
@@ -11,7 +12,36 @@ function loadUserData() {
     document.getElementById('address').innerHTML = userData.address;
 }
 //baustelle von hier
+function generateCompHTML() {
+    document.getElementById('compList1').innerHTML = `
+    <li id="competence1" class="font-size18"></li>
+    <li id="competence2" class="font-size18"></li>
+    <li id="competence3" class="font-size18"></li>
+    <li id="competence4" class="font-size18"></li>
+    `;
+    if(userData.competence5 !== '') {
+        document.getElementById('compList2').innerHTML += `
+        <li id="competence5" class="font-size18"></li>`;
+        if(userData.competence6 !== ''){
+            document.getElementById('compList2').innerHTML +=`
+            <li id="competence6" class="font-size18"></li>`;
+            if(userData.competence7 !== '') {
+                document.getElementById('compList2').innerHTML +=`
+                <li id="competence7" class="font-size18"></li>
+                `;
+                if(userData.competence8 !== '') {
+                    document.getElementById('compList2').innerHTML +=`
+                    <li id="competence8" class="font-size18"></li>
+                    `;
+                }
+            }
+        }
+        
+    }
+}
+
 function loadCompetence() {
+    generateCompHTML();
     document.getElementById('competence1').innerHTML = userData.competence1;
     document.getElementById('competence2').innerHTML = userData.competence2;
     document.getElementById('competence3').innerHTML = userData.competence3;
@@ -25,7 +55,7 @@ function loadCompetence() {
 
 function loadExps() {
     let display = document.getElementById('erfahrung');
-    for(i = 0; i < expArray.length; i++) {
+    for(let i = 0; i < expArray.length; i++) {
         display.innerHTML += returnExps(i);
     }
 }
@@ -50,7 +80,7 @@ function returnExps(p) {
 
 function returnExpTasks(p) {
     let html = ``;
-    for (i = 0; i < expArray[p][0].data[0].aufgaben[0].length; i++){
+    for (let i = 0; i < expArray[p][0].data[0].aufgaben[0].length; i++){
         html += `<li>${expArray[p][0].data[0].aufgaben[0][i]}</li>`;
     }
     return html;
@@ -77,4 +107,17 @@ function loadApprentice() {
     for (let index = 0; index < apprenticeArray.length; index++) {
         display.innerHTML += returnApprentice(index);
     }
+}
+
+function loadLanguages() {
+    for(let i = 0; i < language.length; i++) {
+        document.getElementById('lang-display').innerHTML += generateLanguageHTML(i);
+    }
+}
+
+function generateLanguageHTML(p) {
+    let html = `
+    <p class="font-size20"><b>${language[p][0].data[0].sprache}:</b> ${language[p][0].data[0].grad}</p>
+    `;
+    return html;
 }
