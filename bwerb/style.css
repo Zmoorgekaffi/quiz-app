@@ -137,7 +137,7 @@ label:hover {
 }
 
 .profile-foto-frame img {
-    width: auto;
+    width: 180px;
     height: 240px;
     /* object-fit: contain; */
     border-radius: 12px;
@@ -168,12 +168,36 @@ label:hover {
     align-items: center;
 }
 
+.hoverOverProfilePicture {
+    border-radius: 40px;
+    width: 180px;
+    height: 240px;
+}
+
+.hoverOverProfilePicture:hover {
+    background-color: rgba(245, 168, 24, 0.5);
+}
+
 @media print {
-    .mediaAlways {
-        page-break-after: always;
+    .mediaAlwaysBefore {
+        page-break-before: always;
     }
 
     .printMarginTop {
         margin-top: 240px!important;
+    }
+
+    .img-print {
+        height: 180px;
+        width: 136px;
+    }
+
+    .data-frame2 {
+        padding-left: 0;
+    }
+
+    .content-padding {
+        padding-left: 20px;
+        padding-right: 20px;
     }
 }

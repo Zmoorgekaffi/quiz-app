@@ -21,6 +21,7 @@
                 <p class="font-size18">Familienstand</p>
                 <p class="font-size18">Adresse</p>
             </div>
+            
             <div class="data-frame2">
                 <p id="name" class="font-size18">Max Mustermann</p>
                 <p id="mobile" class="font-size18">000000000</p>
@@ -29,7 +30,11 @@
                 <p id="marital" class="font-size18">ledig</p>
                 <p id="address" class="font-size18">Ronmatt 12, 6038 Honau</p>
             </div>
-            <div class="profile-foto-frame"><label for="file-input"><img id="profile-picture" src="./img/image-portrait-solid.svg" alt=""></label></div>
+            <div class="profile-foto-frame">
+                <label class="hoverOverProfilePicture" for="file-input">
+                    <img id="profile-picture" src="./img/image-portrait-solid.svg" alt="" class="img-print">
+                </label>
+            </div>
             <input id="file-input" accept="image/png, image/jpg" class="d-none" type="file">
         </div>
         <!-- Kompetenzen -->
@@ -40,6 +45,7 @@
             <div class="data-frame2 border-left border-bottom"></div>
             <div class="data-frame border-bottom"></div>
         </div>
+
         <div class="kompetenzen-erfahrung-frame content-padding content-width">
             <div class="data-frame border-bottom flex-bottom">
                 <p class="font-size20"><b>ERFAHRUNG</b></p>
@@ -59,17 +65,19 @@
         <div id="erfahrung" class="width100">
 
         </div>
-        <div class="kompetenzen-frame content-padding content-width paddingTop0">
+        <div class="kompetenzen-frame content-padding content-width paddingTop0 mediaAlwaysBefore">
             <div class="data-frame border-bottom flex-bottom">
                 <p><b>AUSBILDUNG</b></p>
             </div>
             <div class="data-frame2 border-left border-bottom"></div>
             <div class="data-frame border-bottom"></div>
         </div>
-        <div id="apprentices">
-            
+
+        <div class="" id="apprentices">
+
         </div>
-        <div class="kompetenzen-frame content-padding content-width paddingTop0">
+
+        <div class="kompetenzen-frame content-padding content-width paddingTop0 mediaAlwaysBefore">
             <div class="data-frame border-bottom flex-bottom">
                 <p><b>SPRACHEN</b></p>
             </div>
@@ -82,7 +90,22 @@
             <div id="lang-display" class="data-frame3 column border-left">
             </div>
         </div>
+
     </div>
 </body>
+<script>
+    let uploadedImage = "";
+    let profilePictureInput = document.getElementById('file-input');
+
+    profilePictureInput.addEventListener("change", function () {
+        console.log('hello world')
+        let reader = new FileReader();
+        reader.addEventListener("load", () => {
+            uploadedImage = reader.result;
+            document.getElementById('profile-picture').src = uploadedImage;
+        });
+        reader.readAsDataURL(this.files[0]);
+    })
+</Script>
 
 </html>

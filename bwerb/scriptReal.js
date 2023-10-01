@@ -4,19 +4,8 @@ let userData = JSON.parse(localStorage.getItem('data'));
 let language = JSON.parse(localStorage.getItem('language'));
 
 //baustelle
-let uploadedImage = "";
-let profilePictureInput = document.getElementById('file-input');
 
-profilePictureInput.addEventListener("change", function () {
-    console.log('hello world')
-})
 
-// let reader = new FileReader();
-// reader.addEventListener("load", () => {
-//     uploadedImage = reader.result;
-//     document.getElementById('profile-picture').src = uploadedImage;
-// });
-// reader.readAsDataURL(this.files[0]);
 
 //bis hier
 
