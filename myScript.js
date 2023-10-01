@@ -167,6 +167,27 @@ let data = [
                              '
             },
         ]
+    },
+    {
+        title: 'Bewerbungs Foto',
+        questions: [
+            {
+                question: 'Hier kannst du dein Bild Hochladen.',
+                content: '  <div class="bwerb-picture-div">\
+                            <img id="bwerb-picture" class="bwerb-picture" src="./img/user-regular.svg">\
+                            </div>\
+                            <label class="labelForImg" for="photo-input">Drücke hier drauf um dein Bild Hochzuladen</label>\
+                            <input class="photo-input" type="file" accept="jpeg, png, jpg, svg" id="photo-input">\
+                            <script>\
+                            let bwerbPicture = document.getElementById(`bwerb-picture`);\
+                            let pictureInput = document.getElementById(`photo-input`);\
+                            pictureInput.addEventListener(`change`, function() {\
+                                bwerbPicture.src = URL.createObjectURL(pictureInput.files[0]);\
+                            });\
+                            </script>\
+                             '
+            },
+        ]
     }
 ]
 
@@ -208,14 +229,16 @@ function save() {
 
 function SaveCompetence() {
     let currentData = JSON.parse(localStorage.getItem('data'));
-    currentData[document.getElementById('input-data1').getAttribute('name')] = document.getElementById('input-data1').value;
-    currentData[document.getElementById('input-data2').getAttribute('name')] = document.getElementById('input-data2').value;
-    currentData[document.getElementById('input-data3').getAttribute('name')] = document.getElementById('input-data3').value;
-    currentData[document.getElementById('input-data4').getAttribute('name')] = document.getElementById('input-data4').value;
-    currentData[document.getElementById('input-data5').getAttribute('name')] = document.getElementById('input-data5').value;
-    currentData[document.getElementById('input-data6').getAttribute('name')] = document.getElementById('input-data6').value;
-    currentData[document.getElementById('input-data7').getAttribute('name')] = document.getElementById('input-data7').value;
-    currentData[document.getElementById('input-data8').getAttribute('name')] = document.getElementById('input-data8').value;
+    let array = [];
+    
+    for(i = 1; i < 9; i++) {
+        let input = document.getElementById(`input-data${i}`);
+        let value = input.value;
+        if(!value == ""){
+            array.push(value);
+        }
+    }
+    currentData['competences'] = array;
     localStorage.setItem('data', JSON.stringify(currentData));
     loadData();
 }

@@ -16,6 +16,14 @@ body {
     background: #fff;
 }
 
+.d-none {
+    display: none;
+}
+
+label:hover {
+    cursor: pointer;
+}
+
 .content-padding {
     padding-left: var(--mein-standard-abstand);
     padding-right: var(--mein-standard-abstand);

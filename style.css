@@ -99,3 +99,42 @@
 .delete-task:hover {
     cursor: pointer;
 }
+
+.bwerb-picture-div {
+    height: 360px;
+    width: 360px;
+    background-color: rgba(24,60,232, 0.7);
+    border: 1px solid rgba(0, 0, 0, 0);
+    border-radius: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.bwerb-picture {
+    object-fit: contain;
+    height: 180px;
+}
+
+.labelForImg {
+    height: 64px;
+    width: auto;
+    font-size: 24px;
+    font-weight: 700;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 16px;
+    padding: 0 16px
+}
+
+.labelForImg:hover {
+    cursor: pointer;
+    background-color: rgba(0, 0, 0, 0.5);
+    border-radius: 10px;
+    color: white;
+}
+
+.photo-input {
+    display: none;
+}
