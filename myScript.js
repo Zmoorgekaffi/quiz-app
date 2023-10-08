@@ -4,6 +4,7 @@ let expCounter = 1;
 let apprenticeCounter = 1;
 let languageCounter = 1;
 let tasks = [];
+let mainData = JSON.parse(localStorage.getItem('data'));
 
 let data = [
     {
@@ -215,10 +216,27 @@ function saveExp() {
 }
 
 function loadData() {
-    document.getElementById('section-title').innerHTML = data[myCurrentSection].title
-    document.getElementById('question').innerHTML = data[myCurrentSection].questions[currentQuestion].question
-    document.getElementById('question-content').innerHTML = data[myCurrentSection].questions[currentQuestion].content
-    document.getElementById('question-counter').innerHTML = "Frage " + (currentQuestion + 1) + " / " + data[myCurrentSection].questions.length
+    if (myCurrentSection == 0) {
+        document.getElementById('section-title').innerHTML = data[myCurrentSection].title;
+        document.getElementById('question').innerHTML = data[myCurrentSection].questions[currentQuestion].question
+        document.getElementById('question-content').innerHTML = data[myCurrentSection].questions[currentQuestion].content;
+        document.getElementById('question-counter').innerHTML = "Frage " + (currentQuestion + 1) + " / " + data[myCurrentSection].questions.length;
+        document.getElementById('question').innerHTML += generateProgressBar();
+    } else {
+        document.getElementById('section-title').innerHTML = data[myCurrentSection].title;
+        document.getElementById('question').innerHTML = data[myCurrentSection].questions[currentQuestion].question;
+        document.getElementById('question-content').innerHTML = data[myCurrentSection].questions[currentQuestion].content;
+        document.getElementById('question-counter').innerHTML = "Frage " + (currentQuestion + 1) + " / " + data[myCurrentSection].questions.length;
+    }
+}
+
+function generateProgressBar() {
+    let html = /*html*/`
+        <div class="progress">
+            <div class="progress-bar" id="progress" role="progressbar" style="width: 0%;">0%</div>
+        </div>
+    `;
+    return html;
 }
 
 function save() {
@@ -230,11 +248,11 @@ function save() {
 function SaveCompetence() {
     let currentData = JSON.parse(localStorage.getItem('data'));
     let array = [];
-    
-    for(i = 1; i < 9; i++) {
+
+    for (i = 1; i < 9; i++) {
         let input = document.getElementById(`input-data${i}`);
         let value = input.value;
-        if(!value == ""){
+        if (!value == "") {
             array.push(value);
         }
     }
@@ -263,6 +281,26 @@ function reInitCounter(z1) {
     loadData();
 }
 
+function loadMainData() {
+    mainData = JSON.parse(localStorage.getItem('data'));
+}
+
+function check() {
+    loadMainData();
+    if (
+        mainData.hasOwnProperty("name") &&
+        mainData.hasOwnProperty("address") &&
+        mainData.hasOwnProperty("birth") &&
+        mainData.hasOwnProperty("birthPlace") &&
+        mainData.hasOwnProperty("mail") &&
+        mainData.hasOwnProperty("marital") &&
+        mainData.hasOwnProperty("tNumber")
+    ) {
+        document.getElementById('persData').classList.add('disabledBtn');
+        document.getElementById('persData').removeAttribute('onclick');
+    }
+}
+
 function nextStep() {
     if (myCurrentSection + 1 === data.length) {
         myCurrentSection = 0
@@ -276,6 +314,20 @@ function nextStep() {
     }
     save();
     loadData();
+    progress();
+    check();
+}
+
+function progress() {
+    let counter = currentQuestion;
+    if (document.getElementById('progress')){
+        let questionSize = data[0].questions.length;
+        let percent = (counter / questionSize);
+        percent = Math.round(percent * 100);
+        console.log(percent);
+        document.getElementById('progress').style = `width: ${percent}%;`;
+        document.getElementById('progress').innerHTML = `${percent}%`;
+    }
 }
 
 function nextStepSaveCompetence() {
@@ -296,6 +348,16 @@ function nextStepSaveCompetence() {
         }
     }
     SaveCompetence();
+    checkCompetence();
+}
+
+function checkCompetence() {
+    loadMainData();
+    if (
+        mainData.competences.length >= 4) {
+        document.getElementById('competences').classList.add('disabledBtn');
+        document.getElementById('competences').removeAttribute('onclick');
+    }
 }
 
 function apprenticeBtn() {

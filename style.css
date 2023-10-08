@@ -138,3 +138,18 @@
 .photo-input {
     display: none;
 }
+
+.disabledBtn {
+    color: rgba(252, 247, 247, 0.4)!important;
+}
+
+.my-dp-flex-column {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+}
+
+.progress {
+    width: 80%;
+    margin-top: 16px;
+}

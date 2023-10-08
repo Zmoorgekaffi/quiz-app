@@ -27,12 +27,12 @@
                 <img class="pt-5" style="margin-bottom: 64%;" src="./img/logo 2.png" alt="">
                 <div class="collapse navbar-collapse justify-content-center" id="navbarNavAltMarkup">
                     <div class="navbar-nav flex-column">
-                        <a class="nav-item nav-link me-nav-font text-light" href="#" onclick="reInitCounter(0)">Pers. Daten</a>
-                        <a class="nav-item nav-link me-nav-font text-light" href="#" onclick="reInitCounter(1)">Kompetenzen</a>
-                        <a class="nav-item nav-link me-nav-font text-light" href="#" onclick="reInitCounter(2)">Erfahrung</a>
-                        <a class="nav-item nav-link me-nav-font text-light" href="#" onclick="reInitCounter(3), apprenticeBtn()">Ausbildung</a>
-                        <a class="nav-item nav-link me-nav-font text-light" href="#" onclick="reInitCounter(4), languageBtn()">Sprachen</a>
-                        <a class="nav-item nav-link me-nav-font text-light" href="./bwerb/indexReal.html" target="_blank">Vorschau</a>
+                        <a class="nav-item nav-link me-nav-font text-light" id="persData" enabled href="#" onclick="reInitCounter(0)">Pers. Daten</a>
+                        <a class="nav-item nav-link me-nav-font text-light" id="competences" enabled href="#" onclick="reInitCounter(1)">Kompetenzen</a>
+                        <a class="nav-item nav-link me-nav-font text-light" id="expirience" enabled href="#" onclick="reInitCounter(2)">Erfahrung</a>
+                        <a class="nav-item nav-link me-nav-font text-light" id="apprentice" enabled href="#" onclick="reInitCounter(3), apprenticeBtn()">Ausbildung</a>
+                        <a class="nav-item nav-link me-nav-font text-light" id="languages" enabled href="#" onclick="reInitCounter(4), languageBtn()">Sprachen</a>
+                        <a class="nav-item nav-link me-nav-font text-light" id="preview" enabled href="./bwerb/indexReal.html" target="_blank">Vorschau</a>
                     </div>
                 </div>
             </nav>
@@ -41,7 +41,7 @@
                     <span class="w-100 d-flex justify-content-center align-items-center me-margin-bottom-2">
                         <h1 id="section-title" class="card-title display-5"></h1>
                     </span>
-                    <p id="question" class="card-text me-flex-center" style="text-align: center;"></p>
+                    <p id="question" class="card-text me-flex-center my-dp-flex-column style="text-align: center;"></p>
                 </div>
                 <div class=" w-100 d-flex justify-content-center align-items-center flex-column" id="question-content">
 
